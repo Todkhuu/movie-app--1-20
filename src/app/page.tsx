@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Star from "./Star";
 import { Popular } from "@/components/Popular";
+import { HeaderMovie } from "@/components/HeaderMovie";
 
 type MovieType = {
   adult: boolean;
@@ -37,19 +38,20 @@ export default function Home() {
     if (data?.results) {
       setMovies(data.results);
     }
-    console.log({ response });
-    console.log("gg", data.results);
+    // console.log({ response });
+    // console.log("gg", data.results);
   };
 
   useEffect(() => {
     getMovie();
-    console.log("getting movie");
+    // console.log("getting movie");
   }, []);
 
   console.log({ movies });
   return (
-    <div className="max-w-[1280px] m-auto flex flex-wrap">
-      <div>
+    <div>
+      <HeaderMovie />
+      <div className="max-w-[1280px] m-auto flex flex-wrap">
         <div className="w-[100%] flex justify-between my-[32px]">
           <h2>Upcoming</h2> <p>See more </p>
         </div>

@@ -26,7 +26,7 @@ export const Popular = () => {
     if (data?.results) {
       setMovies(data.results);
     }
-    console.log("data array", data.results);
+    // console.log("data array", data.results);
   };
 
   useEffect(() => {
