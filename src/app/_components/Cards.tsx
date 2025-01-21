@@ -9,9 +9,12 @@ type CardsProps = {
 export const Cards = ({ data }: CardsProps) => {
   return (
     <div className="flex flex-wrap gap-[32px]">
-      {data?.slice(0, 10).map((movie: MovieType) => {
+      {data?.slice(0, 10).map((movie: MovieType, index: number) => {
         return (
-          <div className="w-[230px] h-[440px] bg-[#F5F5F5] justify-around rounded-[8px] overflow-hidden">
+          <div
+            key={index}
+            className="w-[230px] h-[440px] bg-[#F5F5F5] justify-around rounded-[8px] overflow-hidden"
+          >
             <Image
               src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
               width={1000}

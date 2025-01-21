@@ -12,9 +12,12 @@ export const TopCard = async () => {
         }}
         className={`w-[100%] h-[800px] bg-cover bg-no-repeat bg-center `}
       >
-        {data?.slice(0, 3).map((movie: MovieType) => {
+        {data?.slice(0, 3).map((movie: MovieType, index: number) => {
           return (
-            <button className="w-[20px] h-[20px] bg-black rounded-full"></button>
+            <button
+              key={index}
+              className="w-[20px] h-[20px] bg-black rounded-full"
+            ></button>
           );
         })}
       </div>
