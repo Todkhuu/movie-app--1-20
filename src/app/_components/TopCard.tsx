@@ -1,9 +1,8 @@
 import { getData } from "@/utils/data";
-import { MovieType } from "@/utils/types";
+import { ButtonGroup } from "./ButtonGroup";
 
 export const TopCard = async () => {
   const data = await getData("now_playing?language=en-US&page=1");
-
   return (
     <div className="flex flex-wrap flex-col h-[800px]">
       <div
@@ -12,14 +11,9 @@ export const TopCard = async () => {
         }}
         className={`w-[100%] h-[800px] bg-cover bg-no-repeat bg-center `}
       >
-        {data?.slice(0, 3).map((movie: MovieType, index: number) => {
-          return (
-            <button
-              key={index}
-              className="w-[20px] h-[20px] bg-black rounded-full"
-            ></button>
-          );
-        })}
+        <div className="h-[800px] w-[100%]">
+          <ButtonGroup movies={data.slice(0, 3)} />
+        </div>
       </div>
     </div>
   );
