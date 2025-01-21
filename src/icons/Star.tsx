@@ -1,6 +1,3 @@
-// export const Star = (props: object) => {
-//
-// };
 import React from "react";
 
 const Star: React.FC<object> = (props) => {
