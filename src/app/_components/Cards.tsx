@@ -1,10 +1,12 @@
-import { getData } from "@/utils/data";
 import { MovieType } from "@/utils/types";
 import Star from "@/icons/Star";
 import Image from "next/image";
 
-export const Cards = async () => {
-  const data = await getData("popular?language=en-US&page=1");
+type CardsProps = {
+  data: MovieType[];
+};
+
+export const Cards = ({ data }: CardsProps) => {
   return (
     <div className="flex flex-wrap gap-[32px]">
       {data?.slice(0, 10).map((movie: MovieType) => {
@@ -14,7 +16,7 @@ export const Cards = async () => {
               src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
               width={1000}
               height={1000}
-              alt=""
+              alt={movie.title || "Movie poster"}
             />
             <div className="p-[8px] flex flex-col gap-[8px]">
               <div className="flex items-center gap-[4px]">
