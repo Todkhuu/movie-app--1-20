@@ -2,6 +2,7 @@ import { MovieType } from "@/utils/types";
 import { MoveRight } from "lucide-react";
 import Star from "@/icons/Star";
 import { getData } from "@/utils/data";
+import Image from "next/image";
 
 export const Upcoming = async () => {
   const data = await getData("upcoming?language=en-US&page=1");
@@ -17,9 +18,10 @@ export const Upcoming = async () => {
         {data?.slice(0, 10).map((movie: MovieType) => {
           return (
             <div className="w-[230px] h-[440px] bg-[#F5F5F5] justify-around rounded-[8px] overflow-hidden">
-              <img
-                className="w-[100%] h-[75%]"
+              <Image
                 src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                width={1000}
+                height={1000}
                 alt=""
               />
               <div className="p-[8px] flex flex-col gap-[8px]">
