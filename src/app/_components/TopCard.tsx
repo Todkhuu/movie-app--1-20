@@ -1,5 +1,5 @@
+import { Button } from "@/components/ui/button";
 import { getData } from "@/utils/data";
-import { ButtonGroup } from "./ButtonGroup";
 
 export const TopCard = async () => {
   const data = await getData("now_playing?language=en-US&page=1");
@@ -9,11 +9,9 @@ export const TopCard = async () => {
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${data[0]?.backdrop_path})`,
         }}
-        className={`w-[100%] h-[800px] bg-cover bg-no-repeat bg-center `}
+        className="w-[100%] h-[600px] bg-cover bg-no-repeat bg-center "
       >
-        <div className="h-[800px] w-[100%]">
-          <ButtonGroup movies={data.slice(0, 3)} />
-        </div>
+        <Button variant={"outline"}>Watch Trailer</Button>
       </div>
     </div>
   );
