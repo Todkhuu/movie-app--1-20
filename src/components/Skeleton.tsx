@@ -2,8 +2,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function SkeletonSlider() {
   return (
-    <div>
-      <Skeleton className="h-[600px] w-[90%] rounded-xl" />
+    <div className="w-[90%] m-auto">
+      <Skeleton className="h-[600px] w-[100%] rounded-xl" />
     </div>
   );
 }
