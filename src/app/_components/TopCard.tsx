@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { getData } from "@/utils/data";
 
 export const TopCard = async () => {
@@ -10,9 +9,7 @@ export const TopCard = async () => {
           backgroundImage: `url(https://image.tmdb.org/t/p/original/${data[0]?.backdrop_path})`,
         }}
         className="w-[100%] h-[600px] bg-cover bg-no-repeat bg-center "
-      >
-        <Button variant={"outline"}>Watch Trailer</Button>
-      </div>
+      ></div>
     </div>
   );
 };

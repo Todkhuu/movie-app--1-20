@@ -1,7 +1,7 @@
 import { TOKEN } from "./constant";
 
 export const getData = async (url: string) => {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${url}`, {
+  const response = await fetch(`https://api.themoviedb.org/3${url}`, {
     headers: {
       Authorization: `Bearer ${TOKEN}`,
       "Content-Type": "application/json",
@@ -10,8 +10,8 @@ export const getData = async (url: string) => {
   const datas = await response.json();
   const data = datas.results;
   return data;
+  // console.log("gg", datas);
   // console.log({ response });
-  // console.log("gg", data.results);
 };
 
 // const addNumber = (a:number, b:number)=>{
