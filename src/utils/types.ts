@@ -15,4 +15,5 @@ export type MovieType = {
   runtime: number;
   name: string;
   job: string;
+  genres: string[];
 };
