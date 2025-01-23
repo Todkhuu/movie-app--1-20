@@ -12,4 +12,5 @@ export type MovieType = {
   vote_count: number;
   genre_ids: number[];
   id: number;
+  runtime: number;
 };

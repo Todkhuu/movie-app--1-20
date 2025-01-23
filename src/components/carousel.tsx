@@ -51,7 +51,7 @@ export function CarouselDemo() {
                     style={{
                       backgroundImage: `url(https://image.tmdb.org/t/p/original/${data?.backdrop_path})`,
                     }}
-                    className="aspect-square w-[100%] h-[600px] bg-cover bg-no-repeat bg-center flex items-center relative"
+                    className="aspect-square text-white w-[100%] h-[600px] bg-cover bg-no-repeat bg-center flex items-center relative"
                   >
                     <div className="w-[500px] ml-[100px]">
                       <p className="text-[16px] font-normal">Now Playing:</p>
@@ -68,7 +68,7 @@ export function CarouselDemo() {
                       <p className="text-[12px] w-[302px] h-[90px] overflow-hidden my-[16px]">
                         {data?.overview}
                       </p>
-                      <Button>
+                      <Button className="bg-white text-black">
                         <CiPlay1 />
                         Watch Trailer
                       </Button>
