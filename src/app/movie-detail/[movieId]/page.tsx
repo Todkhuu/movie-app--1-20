@@ -3,6 +3,10 @@ import { FaStar } from "react-icons/fa";
 import { TOKEN } from "@/utils/constant";
 import { MovieType } from "@/utils/types";
 import Image from "next/image";
+import { CardsTop } from "@/app/_components/CardsTop";
+import { Card, CardTitle } from "@/components/ui/card";
+import Star from "@/icons/Star";
+import { Footer } from "@/app/_components/Footer";
 
 const MoviePage = async ({
   params: { movieId },
@@ -29,7 +33,43 @@ const MoviePage = async ({
     }
   );
   const datas = await responses.json();
-  console.log("responseee", datas);
+  // console.log("responseee", datas);
+  const responsess = await fetch(
+    `https://api.themoviedb.org/3/genre/movie/list?language=en`,
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const datass = await responsess.json();
+  // console.log("responseee", datass);
+  const responsesss = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const datasss = await responsesss.json();
+  const dd = datasss.cast;
+  // console.log("responseee", datasss);
+  const responsessss = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const datassss = await responsessss.json();
+  const ddd = datassss.results;
+  console.log("responseee", datassss);
+  const text = "More like this";
   return (
     <div>
       <Header />
@@ -66,7 +106,59 @@ const MoviePage = async ({
             className="w-[290px] h-[428px]"
           />
         </div>
+        <div className="mt-[32px] flex gap-[12px]">
+          {datass.genres.slice(0, 4).map((data: MovieType) => {
+            return (
+              <button className="rounded-[15px] border-white-400 border-solid border-[1px] px-[10px] py-[2px]">
+                <p className="font-medium text-[12px]">{data?.name}</p>
+              </button>
+            );
+          })}
+        </div>
+        <p className="mt-[20px] text-[16px]">{data?.overview}</p>
+        <div className="mt-[20px] border-solid border-b-stone-400 border-b-[1px] my-[4px]">
+          <h3 className="text-[16px] font-bold">Director</h3>
+        </div>
+        <div className="border-solid border-b-stone-400 border-b-[1px]">
+          <h3 className="text-[16px] font-bold">Writers</h3>
+        </div>
+        <div className="flex gap-[53px] border-solid border-b-stone-400 border-b-[1px] mb-[32px]">
+          <h3 className="text-[16px] font-bold">Stars</h3>
+          <div className="flex gap-[10px]">
+            {datasss.cast.slice(0, 3).map((d: MovieType) => {
+              return <p className="text-[16px]">{d.name}</p>;
+            })}
+          </div>
+        </div>
+        <CardsTop text={text} />
+        <div className="flex gap-[32px]">
+          {ddd.slice(0, 5).map((d: MovieType) => {
+            return (
+              <Card className="w-[190px] h-[372px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl">
+                <Image
+                  src={`https://image.tmdb.org/t/p/original/${d?.poster_path}`}
+                  width={1000}
+                  height={1000}
+                  alt={d.title || "Movie poster"}
+                />
+                <div className="p-[8px] flex flex-col gap-[8px]">
+                  <div className="flex items-center gap-[4px]">
+                    <Star />
+                    <p className="text-[14px] font-medium ">
+                      {d?.vote_average.toFixed(1)}
+                      <span className="text-[#71717a] text-[12px]">/10</span>
+                    </p>
+                  </div>
+                  <CardTitle className=" text-[18px] font-normal ">
+                    {d?.title}
+                  </CardTitle>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

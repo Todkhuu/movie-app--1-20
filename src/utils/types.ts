@@ -13,4 +13,6 @@ export type MovieType = {
   genre_ids: number[];
   id: number;
   runtime: number;
+  name: string;
+  job: string;
 };
