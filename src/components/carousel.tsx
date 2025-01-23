@@ -15,6 +15,7 @@ import Star from "@/icons/Star";
 import { Button } from "./ui/button";
 import { CiPlay1 } from "react-icons/ci";
 import { SkeletonSlider } from "./Skeleton";
+import Autoplay from "embla-carousel-autoplay";
 
 export function CarouselDemo() {
   const [data, setdata] = React.useState<MovieType[] | null>(null);
@@ -26,12 +27,22 @@ export function CarouselDemo() {
     };
     fetchData();
   }, []);
+
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
+
   return (
     <div>
       {!data ? (
         <SkeletonSlider />
       ) : (
-        <Carousel className="w-[90%] h-[600px] m-auto">
+        <Carousel
+          plugins={[plugin.current]}
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+          className="w-[100%] h-[600px] m-auto"
+        >
           <CarouselContent>
             {data.slice(1.4).map((data: MovieType, index: number) => (
               <CarouselItem key={index}>
@@ -40,9 +51,9 @@ export function CarouselDemo() {
                     style={{
                       backgroundImage: `url(https://image.tmdb.org/t/p/original/${data?.backdrop_path})`,
                     }}
-                    className="w-[100%] h-[600px] bg-cover bg-no-repeat bg-center flex items-center"
+                    className="aspect-square w-[100%] h-[600px] bg-cover bg-no-repeat bg-center flex items-center relative"
                   >
-                    <div className="w-[500px]">
+                    <div className="w-[500px] ml-[100px]">
                       <p className="text-[16px] font-normal">Now Playing:</p>
                       <h2 className="text-[36px] font-bold">{data?.title}</h2>
                       <div className="flex items-center gap-[4px] ">
@@ -67,8 +78,8 @@ export function CarouselDemo() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="absolute left-[20px]" />
+          <CarouselNext className="absolute right-[20px]" />
         </Carousel>
       )}
     </div>

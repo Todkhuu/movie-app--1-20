@@ -49,7 +49,7 @@ export async function PopoverDemo() {
                 // </Button>
                 <button
                   key={index}
-                  className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[1px] px-[10px] py-[2px] font-semibold "
+                  className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold "
                 >
                   {genre?.name}
                   <MdOutlineKeyboardArrowRight />
