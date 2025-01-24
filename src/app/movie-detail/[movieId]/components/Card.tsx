@@ -2,6 +2,7 @@ import { Card, CardTitle } from "@/components/ui/card";
 import Star from "@/icons/Star";
 import { MovieType } from "@/utils/types";
 import Image from "next/image";
+import Link from "next/link";
 
 type Card = {
   dataCard: MovieType[];
@@ -12,6 +13,7 @@ export const Cards = ({ dataCard }: Card) => {
     <div className="flex gap-[32px]">
       {dataCard.slice(0, 5).map((card: MovieType, index: number) => {
         return (
+          // <Link href={`movie-detail/${card.id}`}>
           <Card
             key={index}
             className="w-[190px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl"
@@ -35,6 +37,7 @@ export const Cards = ({ dataCard }: Card) => {
               </CardTitle>
             </div>
           </Card>
+          // </Link>
         );
       })}
     </div>

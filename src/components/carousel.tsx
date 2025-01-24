@@ -12,13 +12,10 @@ import {
 import { getData } from "@/utils/data";
 import { MovieType } from "@/utils/types";
 import Star from "@/icons/Star";
-import { Button } from "./ui/button";
-import { CiPlay1 } from "react-icons/ci";
 import { SkeletonSlider } from "./Skeleton";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 import { Trailer } from "@/app/movie-detail/[movieId]/components/Trailer";
-import MoviePage from "@/app/movie-detail/[movieId]/page";
 
 export function CarouselDemo() {
   const [data, setdata] = React.useState<MovieType[] | null>(null);

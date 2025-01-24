@@ -6,13 +6,16 @@ type HeaderBottom = {
 };
 
 export const HeaderBottom = ({ data }: HeaderBottom) => {
+  const conTime = data.runtime;
+  console.log(conTime);
   return (
     <div className="flex justify-between">
       <div>
         <h2 className="text-[36px] font-semibold ">{data?.title}</h2>
         <div>
           <p className="text-[18px]">
-            {data?.release_date} · PG · {data?.runtime}
+            {data?.release_date} · PG · {(conTime / 60).toFixed(0)}h{" "}
+            {(conTime % 60).toFixed(0)}min
           </p>
         </div>
       </div>

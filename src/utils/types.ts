@@ -16,6 +16,7 @@ export type MovieType = {
   name: string;
   job: string;
   genres: string[];
+  known_for_department: string;
 };
 export type TrailerType = {
   key: string;

@@ -20,6 +20,8 @@ const MoviePage = async ({
   const dataGenre = dataGenres.genres;
   const dataCrews = await getDatas(`/movie/${movieId}/credits?language=en-US`);
   const dataCrew = dataCrews.cast;
+  const dataCre = dataCrews.crew;
+  console.log(dataCrew);
   const dataCards = await getDatas(
     `/movie/${movieId}/similar?language=en-US&page=1`
   );
@@ -43,7 +45,7 @@ const MoviePage = async ({
         </div>
         <Genres dataGenre={dataGenre} />
         <p className="mt-[20px] text-[16px]">{data?.overview}</p>
-        <Crew dataCrew={dataCrew} />
+        <Crew dataCrew={dataCrew} dataCre={dataCre} />
         <CardsTop text={text} />
         <Cards dataCard={dataCard} />
       </div>
