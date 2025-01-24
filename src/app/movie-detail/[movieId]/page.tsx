@@ -8,6 +8,7 @@ import { Trailer } from "./components/Trailer";
 import { Genres } from "./components/Genres";
 import { Crew } from "./components/Crew";
 import { Cards } from "./components/Card";
+import { Images } from "./components/Image";
 
 const MoviePage = async ({
   params: { movieId },
@@ -15,7 +16,6 @@ const MoviePage = async ({
   params: { movieId: MovieType };
 }) => {
   const data = await getDatas(`/movie/${movieId}?language=en-US`);
-  const dataTrailer = await getDatas(`/movie/${movieId}/videos?language=en-US`);
   const dataGenres = await getDatas(`/genre/movie/list?language=en`);
   const dataGenre = dataGenres.genres;
   const dataCrews = await getDatas(`/movie/${movieId}/credits?language=en-US`);
@@ -30,7 +30,17 @@ const MoviePage = async ({
       <Header />
       <div className="max-w-[1080px] m-auto mt-[52px]">
         <HeaderBottom data={data} />
-        <Trailer data={data} dataTrailer={dataTrailer} />
+        <div className="flex mt-[24px] justify-between">
+          <Images data={data} />
+          <div
+            style={{
+              backgroundImage: `url(https://image.tmdb.org/t/p/original/${data?.backdrop_path})`,
+            }}
+            className="aspect-square w-[760px] h-[428px] bg-cover bg-no-repeat bg-center p-[24px] flex items-end"
+          >
+            <Trailer movieId={data?.id} />
+          </div>
+        </div>
         <Genres dataGenre={dataGenre} />
         <p className="mt-[20px] text-[16px]">{data?.overview}</p>
         <Crew dataCrew={dataCrew} />

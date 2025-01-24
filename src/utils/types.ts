@@ -17,3 +17,6 @@ export type MovieType = {
   job: string;
   genres: string[];
 };
+export type TrailerType = {
+  key: string;
+};

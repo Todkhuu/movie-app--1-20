@@ -16,7 +16,7 @@ export const Crew = ({ dataCrew }: CrewProps) => {
       <div className="flex gap-[53px] border-solid border-b-stone-400 border-b-[0.1px] mb-[32px] pb-[8px] pt-[20px]">
         <h3 className="text-[16px] font-bold">Stars</h3>
         <div className="flex gap-[10px]">
-          {dataCrew.slice(0, 3).map((crew: MovieType, index: number) => {
+          {dataCrew.slice(0, 5).map((crew: MovieType, index: number) => {
             return (
               <p key={index} className="text-[16px]">
                 {crew.name} &middot;
