@@ -14,8 +14,8 @@ export const HeaderBottom = ({ data }: HeaderBottom) => {
         <h2 className="text-[36px] font-semibold ">{data?.title}</h2>
         <div>
           <p className="text-[18px]">
-            {data?.release_date} · PG · {(conTime / 60).toFixed(0)}h{" "}
-            {(conTime % 60).toFixed(0)}min
+            {data?.release_date} · PG · {Math.floor(conTime / 60)}h{" "}
+            {Math.floor(conTime % 60)}min
           </p>
         </div>
       </div>
