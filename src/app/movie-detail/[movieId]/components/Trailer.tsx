@@ -1,5 +1,5 @@
 "use client";
-import { MovieType, TrailerType } from "@/utils/types";
+import { TrailerType } from "@/utils/types";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { CiPlay1 } from "react-icons/ci";
@@ -17,7 +17,7 @@ export function Trailer({ movieId }: { movieId: number }) {
       setdata(res);
     };
     fetchData();
-  }, []);
+  }, [movieId]);
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -1,7 +1,5 @@
-import { Header } from "@/app/_components/Header";
 import { MovieType } from "@/utils/types";
 import { CardsTop } from "@/app/_components/CardsTop";
-import { Footer } from "@/app/_components/Footer";
 import { getDatas } from "@/utils/datas";
 import { HeaderBottom } from "./components/HeaderBottom";
 import { Trailer } from "./components/Trailer";
@@ -17,16 +15,10 @@ const MoviePage = async ({
 }) => {
   const data = await getDatas(`/movie/${movieId}?language=en-US`);
   const dataGenres = await getDatas(`/genre/movie/list?language=en`);
-  const dataGenre = dataGenres.genres;
   const dataCrews = await getDatas(`/movie/${movieId}/credits?language=en-US`);
-  const dataCrew = dataCrews.cast;
-  const dataCre = dataCrews.crew;
-  console.log(dataCrew);
   const dataCards = await getDatas(
     `/movie/${movieId}/similar?language=en-US&page=1`
   );
-  const dataCard = dataCards.results;
-  const text = "More like this";
   return (
     <div>
       <div className="max-w-[1080px] m-auto mt-[52px]">
@@ -42,11 +34,11 @@ const MoviePage = async ({
             <Trailer movieId={data?.id} />
           </div>
         </div>
-        <Genres dataGenre={dataGenre} />
+        <Genres dataGenre={dataGenres.genres} />
         <p className="mt-[20px] text-[16px]">{data?.overview}</p>
-        <Crew dataCrew={dataCrew} dataCre={dataCre} />
-        <CardsTop text={text} />
-        <Cards dataCard={dataCard} />
+        <Crew dataCrew={dataCrews.cast} dataCre={dataCrews.crew} />
+        <CardsTop text="More like this" />
+        <Cards dataCard={dataCards.results} />
       </div>
     </div>
   );
