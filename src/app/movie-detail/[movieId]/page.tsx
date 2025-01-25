@@ -29,7 +29,6 @@ const MoviePage = async ({
   const text = "More like this";
   return (
     <div>
-      <Header />
       <div className="max-w-[1080px] m-auto mt-[52px]">
         <HeaderBottom data={data} />
         <div className="flex mt-[24px] justify-between">
@@ -49,7 +48,6 @@ const MoviePage = async ({
         <CardsTop text={text} />
         <Cards dataCard={dataCard} />
       </div>
-      <Footer />
     </div>
   );
 };

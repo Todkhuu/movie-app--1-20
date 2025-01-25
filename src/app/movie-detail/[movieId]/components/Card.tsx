@@ -13,11 +13,8 @@ export const Cards = ({ dataCard }: Card) => {
     <div className="flex gap-[32px]">
       {dataCard.slice(0, 5).map((card: MovieType, index: number) => {
         return (
-          <Link href={`/movie-detail/${card.id}`}>
-            <Card
-              key={index}
-              className="w-[190px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl"
-            >
+          <Link key={index} href={`/movie-detail/${card.id}`}>
+            <Card className="w-[190px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl">
               <Image
                 src={`https://image.tmdb.org/t/p/original/${card?.poster_path}`}
                 width={1000}
