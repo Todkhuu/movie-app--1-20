@@ -1,9 +1,9 @@
-import { MovieType } from "@/utils/types";
+import { OneMovieType } from "@/utils/types";
 import { Images } from "./Image";
 import { Trailer } from "./Trailer";
 
 type TrailerContainerType = {
-  data: MovieType;
+  data: OneMovieType;
 };
 
 export const TrailerContainer = ({ data }: TrailerContainerType) => {
@@ -16,7 +16,7 @@ export const TrailerContainer = ({ data }: TrailerContainerType) => {
         }}
         className="aspect-square w-[760px] h-[428px] bg-cover bg-no-repeat bg-center p-[24px] flex items-end"
       >
-        <Trailer movieId={data?.id} />
+        <Trailer dataId={data?.id} />
       </div>
     </div>
   );

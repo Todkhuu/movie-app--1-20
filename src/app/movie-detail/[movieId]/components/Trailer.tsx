@@ -7,17 +7,16 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 import { getDatas } from "@/utils/datas";
 import React, { useState } from "react";
 
-export function Trailer({ movieId }: { movieId: number }) {
-  const [data, setdata] = useState<TrailerType | null>(null);
+export function Trailer({ dataId }: { dataId: number }) {
+  const [dataTrailer, setdataTrailer] = useState<TrailerType | null>(null);
   React.useEffect(() => {
     const fetchData = async () => {
-      const result = await getDatas(`/movie/${movieId}/videos?language=en-US`);
+      const result = await getDatas(`/movie/${dataId}/videos?language=en-US`);
       const res = result.results[0];
-      console.log(res);
-      setdata(res);
+      setdataTrailer(res);
     };
     fetchData();
-  }, [movieId]);
+  }, [dataId]);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,7 +32,7 @@ export function Trailer({ movieId }: { movieId: number }) {
         <iframe
           width="996"
           height="561"
-          src={`https://www.youtube.com/embed/${data?.key}`}
+          src={`https://www.youtube.com/embed/${dataTrailer?.key}`}
           className="rounded-[4px]"
         ></iframe>
       </DialogContent>

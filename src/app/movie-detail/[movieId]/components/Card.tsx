@@ -1,17 +1,17 @@
 import { Card, CardTitle } from "@/components/ui/card";
 import Star from "@/icons/Star";
-import { MovieType } from "@/utils/types";
+import { SimilarMovieType } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 
-type Card = {
-  dataCard: MovieType[];
+type SimilarCard = {
+  dataCards: SimilarMovieType[];
 };
 
-export const Cards = ({ dataCard }: Card) => {
+export const Cards = ({ dataCards }: SimilarCard) => {
   return (
     <div className="flex gap-[32px]">
-      {dataCard.slice(0, 5).map((card: MovieType, index: number) => {
+      {dataCards.slice(0, 5).map((card: SimilarMovieType, index: number) => {
         return (
           <Link key={index} href={`/movie-detail/${card.id}`}>
             <Card className="w-[190px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl">

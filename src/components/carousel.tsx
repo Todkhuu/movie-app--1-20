@@ -1,7 +1,5 @@
 "use client";
 import * as React from "react";
-
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -11,11 +9,11 @@ import {
 } from "@/components/ui/carousel";
 import { getData } from "@/utils/data";
 import { MovieType } from "@/utils/types";
-import Star from "@/icons/Star";
 import { SkeletonSlider } from "./Skeleton";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 import { Trailer } from "@/app/movie-detail/[movieId]/components/Trailer";
+import { Cards } from "./components/Cards";
 
 export function CarouselDemo() {
   const [data, setdata] = React.useState<MovieType[] | null>(null);
@@ -48,39 +46,11 @@ export function CarouselDemo() {
               <div key={index} className="relative">
                 <Link href={`movie-detail/${data.id}`}>
                   <CarouselItem>
-                    <Card>
-                      <CardContent
-                        style={{
-                          backgroundImage: `url(https://image.tmdb.org/t/p/original/${data?.backdrop_path})`,
-                        }}
-                        className="aspect-square text-white w-[100vw] h-[600px] bg-cover bg-no-repeat bg-center flex items-center"
-                      >
-                        <div className="w-[500px] ml-[100px]">
-                          <p className="text-[16px] font-normal">
-                            Now Playing:
-                          </p>
-                          <h2 className="text-[36px] font-bold">
-                            {data?.title}
-                          </h2>
-                          <div className="flex items-center gap-[4px] ">
-                            <Star />
-                            <p className="text-[18px] text-white font-medium ">
-                              {data?.vote_average.toFixed(1)}
-                              <span className="text-[#71717a] text-[16px]">
-                                /10
-                              </span>
-                            </p>
-                          </div>
-                          <p className="text-[12px] w-[302px] h-[90px] overflow-hidden my-[16px]">
-                            {data?.overview}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <Cards data={data} />
                   </CarouselItem>
                 </Link>
                 <div className="absolute left-[140px] bottom-[160px] z-1000">
-                  <Trailer movieId={data?.id} />
+                  <Trailer dataId={data?.id} />
                 </div>
               </div>
             ))}

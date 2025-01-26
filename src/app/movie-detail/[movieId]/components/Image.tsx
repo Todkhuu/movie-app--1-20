@@ -1,8 +1,8 @@
-import { MovieType } from "@/utils/types";
+import { OneMovieType } from "@/utils/types";
 import Image from "next/image";
 
 type Images = {
-  data: MovieType;
+  data: OneMovieType;
 };
 
 export const Images = ({ data }: Images) => {

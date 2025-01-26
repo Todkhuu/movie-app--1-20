@@ -7,17 +7,38 @@ export type MovieType = {
   original_title: string;
   overview: string;
   popularity: number;
-  release_date: string;
   video: boolean;
-  vote_count: number;
   genre_ids: number[];
   id: number;
-  runtime: number;
-  name: string;
   job: string;
-  genres: string[];
-  known_for_department: string;
 };
+export type GenreType = {
+  name: string;
+};
+export type OneMovieType = {
+  runtime: number;
+  title: string;
+  release_date: string;
+  vote_average: number;
+  vote_count: number;
+  id: number;
+  poster_path: string;
+  backdrop_path: string;
+};
+export type SimilarMovieType = {
+  id: number;
+  poster_path: string;
+  title: string;
+  vote_average: number;
+};
+export type CrewType = {
+  known_for_department: string;
+  name: string;
+};
+export type CastType = {
+  name: string;
+};
+
 export type TrailerType = {
   key: string;
 };

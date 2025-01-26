@@ -1,13 +1,12 @@
-import { MovieType } from "@/utils/types";
+import { OneMovieType } from "@/utils/types";
 import { FaStar } from "react-icons/fa6";
 
 type HeaderBottom = {
-  data: MovieType;
+  data: OneMovieType;
 };
 
 export const HeaderBottom = ({ data }: HeaderBottom) => {
   const conTime = data.runtime;
-  console.log(conTime);
   return (
     <div className="flex justify-between">
       <div>

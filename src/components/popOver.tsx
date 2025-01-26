@@ -43,17 +43,21 @@ export async function PopoverDemo() {
           <div className="flex flex-wrap gap-[18px]">
             {data.map((genre: genreType, index: number) => {
               return (
-                // <Button variant="outline" className=" text-xs rounded-[20px]">
-                //   {genre?.name}
-                //   <MdOutlineKeyboardArrowRight />
-                // </Button>
-                <button
+                <Button
                   key={index}
-                  className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold "
+                  variant="outline"
+                  className=" text-xs rounded-[20px] m-0"
                 >
                   {genre?.name}
                   <MdOutlineKeyboardArrowRight />
-                </button>
+                </Button>
+                // <button
+                //   key={index}
+                //   className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold "
+                // >
+                //   {genre?.name}
+                //   <MdOutlineKeyboardArrowRight />
+                // </button>
               );
             })}
           </div>

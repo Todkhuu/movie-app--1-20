@@ -27,9 +27,9 @@ const MoviePage = async ({
         <TrailerContainer data={data} />
         <Genres dataGenre={dataGenres.genres} />
         <p className="mt-[20px] text-[16px]">{data?.overview}</p>
-        <Crew dataCrew={dataCrews.cast} dataCast={dataCrews.crew} />
+        <Crew dataCast={dataCrews.cast} dataCrew={dataCrews.crew} />
         <CardsTop text="More like this" />
-        <Cards dataCard={dataCards.results} />
+        <Cards dataCards={dataCards.results} />
       </div>
     </div>
   );
