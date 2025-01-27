@@ -29,6 +29,9 @@ export type PageType = {
 export type GenreType = {
   name: string;
   id: number;
+  total_results: string;
+  results: [];
+  genres: [];
 };
 export type OneMovieType = {
   runtime: number;

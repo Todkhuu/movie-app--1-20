@@ -1,5 +1,5 @@
 import { CardsTop } from "@/app/_components/CardsTop";
-import { getDatas } from "@/utils/datas";
+import { getData } from "@/utils/data";
 import { HeaderBottom } from "./components/HeaderBottom";
 import { Genres } from "./components/Genres";
 import { Crew } from "./components/Crew";
@@ -13,10 +13,10 @@ const MoviePage = async ({
 }) => {
   const { movieId } = await params;
 
-  const data = await getDatas(`/movie/${movieId}?language=en-US`);
-  const dataGenres = await getDatas(`/genre/movie/list?language=en`);
-  const dataCrews = await getDatas(`/movie/${movieId}/credits?language=en-US`);
-  const dataCards = await getDatas(
+  const data = await getData(`/movie/${movieId}?language=en-US`);
+  const dataGenres = await getData(`/genre/movie/list?language=en`);
+  const dataCrews = await getData(`/movie/${movieId}/credits?language=en-US`);
+  const dataCards = await getData(
     `/movie/${movieId}/similar?language=en-US&page=1`
   );
 

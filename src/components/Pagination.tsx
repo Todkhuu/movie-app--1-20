@@ -7,8 +7,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { PageType } from "@/utils/types";
-import Link from "next/link";
 
 export function PaginationDemo() {
   return (

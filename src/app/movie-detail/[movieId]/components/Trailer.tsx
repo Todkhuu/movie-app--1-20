@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { CiPlay1 } from "react-icons/ci";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import { getDatas } from "@/utils/datas";
+import { getData } from "@/utils/data";
 import React, { useState } from "react";
 
 export function Trailer({ dataId }: { dataId: number }) {
   const [dataTrailer, setdataTrailer] = useState<TrailerType | null>(null);
   React.useEffect(() => {
     const fetchData = async () => {
-      const result = await getDatas(`/movie/${dataId}/videos?language=en-US`);
+      const result = await getData(`/movie/${dataId}/videos?language=en-US`);
       const res = result.results[0];
       setdataTrailer(res);
     };

@@ -9,6 +9,7 @@ type CardsProps = {
 };
 
 export const Cards = ({ data }: CardsProps) => {
+  console.log("dataaaaaa", data);
   return (
     <div className="flex flex-wrap gap-[32px]">
       {data?.slice(0, 10).map((movie: MovieType, index: number) => {

@@ -21,7 +21,7 @@ export function CarouselDemo() {
   React.useEffect(() => {
     const fetchData = async () => {
       const result = await getData("/movie/now_playing?language=en-US&page=1");
-      setdata(result);
+      setdata(result.results);
     };
     fetchData();
   }, []);

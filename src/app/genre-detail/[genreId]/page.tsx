@@ -3,25 +3,22 @@ import { TOKEN } from "@/utils/constant";
 import Image from "next/image";
 import Star from "@/icons/Star";
 import { GenreType, PageType } from "@/utils/types";
-import { Pagination } from "@/components/ui/pagination";
+// import { Pagination } from "@/components/ui/pagination";
 import Link from "next/link";
+import { getData } from "@/utils/data";
+// import { PopButton } from "@/components/components/PopButton";
 // import { ToggleGroupDemo } from "@/components/Toggle-group";
 
 const GenrePage = async ({
-  params: { genreId },
+  params,
 }: {
-  params: { genreId: string; page: string };
+  params: Promise<{ genreId: string }>;
 }) => {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genreId}&page=${1}`,
-    {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
+  const { genreId } = await params;
+  const data: GenreType = await getData(
+    `/discover/movie?language=en&with_genres=${genreId}&page=${1}`
   );
-  const data = await response.json();
+  const datas = data.results;
 
   const responses = await fetch(
     `https://api.themoviedb.org/3/genre/movie/list?language=en`,
@@ -34,7 +31,6 @@ const GenrePage = async ({
   );
   const dataGenre = await responses.json();
 
-  console.log("dataaa", dataGenre);
   return (
     <div className="max-w-[1280px] m-auto">
       <h2 className="text-[30px] font-semibold mt-[52px] mb-[32px]">
@@ -51,18 +47,15 @@ const GenrePage = async ({
             {data.total_results} titles in{" "}
             {dataGenre.genres
               .filter((genre: GenreType) => genre.id.toString() == genreId)
-              .map((genre: GenreType) => (
-                <p>"{genre.name}"</p>
+              .map((genre: GenreType, index: number) => (
+                <p key={index}>{genre.name}</p>
               ))}
           </h3>
           <div className="flex flex-wrap gap-[43px]">
-            {data.results.map((data: PageType, index: number) => {
+            {datas.map((data: PageType, index: number) => {
               return (
-                <Link href={`/movie-detail/${data.id}`}>
-                  <Card
-                    key={index}
-                    className="w-[165px] h-[331px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl"
-                  >
+                <Link key={index} href={`/movie-detail/${data.id}`}>
+                  <Card className="w-[165px] h-[331px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl">
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${data?.poster_path}`}
                       width={1000}
@@ -88,7 +81,8 @@ const GenrePage = async ({
               );
             })}
           </div>
-          <Pagination />
+          {/* <Pagination /> */}
+          {/* <PopButton data={data.results} /> */}
         </div>
       </div>
     </div>

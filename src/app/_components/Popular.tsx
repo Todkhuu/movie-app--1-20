@@ -10,7 +10,7 @@ export const Popular = async () => {
       <Link href="/catogery-detail/popular">
         <CardsTop text={"Popular"} />
       </Link>
-      <Cards data={data} />
+      <Cards data={data.results} />
     </div>
   );
 };

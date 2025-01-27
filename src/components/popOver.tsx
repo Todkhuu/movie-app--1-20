@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import {
   Popover,
   PopoverContent,
@@ -7,8 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { TOKEN } from "@/utils/constant";
 import { IoIosArrowDown } from "react-icons/io";
-import Link from "next/link";
-import { GenreType } from "@/utils/types";
+import { PopButton } from "./components/PopButton";
 
 export async function PopoverDemo() {
   const response = await fetch(
@@ -39,29 +37,7 @@ export async function PopoverDemo() {
               See lists of movies by genre
             </p>
           </div>
-          <div className="flex flex-wrap gap-[18px]">
-            {data.map((genre: GenreType, index: number) => {
-              return (
-                // <Button
-                //   key={index}
-                //   variant="outline"
-                //   className=" text-xs rounded-[20px] m-0"
-                // >
-                //   {genre?.name}
-                //   <MdOutlineKeyboardArrowRight />
-                // </Button>
-                <Link href={`/genre-detail/${genre.id}`}>
-                  <button
-                    key={index}
-                    className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold "
-                  >
-                    {genre?.name}
-                    <MdOutlineKeyboardArrowRight />
-                  </button>
-                </Link>
-              );
-            })}
-          </div>
+          <PopButton data={data} />
         </div>
       </PopoverContent>
     </Popover>

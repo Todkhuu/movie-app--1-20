@@ -7,15 +7,6 @@ export const getData = async (movieId: string) => {
       "Content-Type": "application/json",
     },
   });
-  const datas = await response.json();
-  const data = datas.results;
+  const data = await response.json();
   return data;
-  // console.log("gg", datas);
-  // console.log({ response });
 };
-
-// const addNumber = (a:number, b:number)=>{
-//     return a + b
-// }
-
-// const value = addNumber(4, 6)

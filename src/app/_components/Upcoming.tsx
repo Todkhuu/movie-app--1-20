@@ -6,11 +6,11 @@ import Link from "next/link";
 export const Upcoming = async () => {
   const data = await getData("/movie/upcoming?language=en-US&page=1");
   return (
-    <div className="max-w-[1280px] m-auto flex flex-wrap">
-      <Link href="/catogery-detail/top_rated">
+    <div className="max-w-[1280px] m-auto ">
+      <Link href="/catogery-detail/upcoming">
         <CardsTop text={"Upcoming"} />
       </Link>
-      <Cards data={data} />
+      <Cards data={data.results} />
     </div>
   );
 };

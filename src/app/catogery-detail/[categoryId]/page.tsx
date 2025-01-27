@@ -1,16 +1,21 @@
-import { TOKEN } from "@/utils/constant";
+import { Cards } from "@/app/_components/Cards";
 import { getData } from "@/utils/data";
 
-const categoryId = async ({
-  params: { categoryId },
+const CategoryPage = async ({
+  params,
 }: {
-  params: { categoryId: string };
+  params: Promise<{ categoryId: string }>;
 }) => {
-  const link = `/movie/${categoryId}?language=en-US&page=1`;
-  const data = await getData(link);
+  const { categoryId } = await params;
+  const data = await getData(`/movie/${categoryId}?language=en-US&page=1`);
   console.log(data);
-
-  console.log(categoryId);
-  return <div className="max-w-[1280px] m-auto">asd</div>;
+  return (
+    <div className="max-w-[1280px] m-auto">
+      <h2 className="text-[30px] font-semibold mt-[52px] mb-[32px]">
+        {categoryId}
+      </h2>
+      <Cards data={data.results} />
+    </div>
+  );
 };
-export default categoryId;
+export default CategoryPage;
