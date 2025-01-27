@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/popover";
 import { TOKEN } from "@/utils/constant";
 import { IoIosArrowDown } from "react-icons/io";
+import Link from "next/link";
+import { GenreType } from "@/utils/types";
 
 export async function PopoverDemo() {
   const response = await fetch(
@@ -21,9 +23,6 @@ export async function PopoverDemo() {
   const datas = await response.json();
   const data = datas.genres;
 
-  type genreType = {
-    name: string;
-  };
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -41,23 +40,25 @@ export async function PopoverDemo() {
             </p>
           </div>
           <div className="flex flex-wrap gap-[18px]">
-            {data.map((genre: genreType, index: number) => {
+            {data.map((genre: GenreType, index: number) => {
               return (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className=" text-xs rounded-[20px] m-0"
-                >
-                  {genre?.name}
-                  <MdOutlineKeyboardArrowRight />
-                </Button>
-                // <button
+                // <Button
                 //   key={index}
-                //   className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold "
+                //   variant="outline"
+                //   className=" text-xs rounded-[20px] m-0"
                 // >
                 //   {genre?.name}
                 //   <MdOutlineKeyboardArrowRight />
-                // </button>
+                // </Button>
+                <Link href={`/genre-detail/${genre.id}`}>
+                  <button
+                    key={index}
+                    className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold "
+                  >
+                    {genre?.name}
+                    <MdOutlineKeyboardArrowRight />
+                  </button>
+                </Link>
               );
             })}
           </div>

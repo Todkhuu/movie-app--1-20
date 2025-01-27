@@ -12,8 +12,23 @@ export type MovieType = {
   id: number;
   job: string;
 };
+export type PageType = {
+  poster_path: string;
+  title: string;
+  vote_average: number;
+  backdrop_path: string;
+  adult: boolean;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  video: boolean;
+  genre_ids: number[];
+  id: number;
+  job: string;
+};
 export type GenreType = {
   name: string;
+  id: number;
 };
 export type OneMovieType = {
   runtime: number;
@@ -34,6 +49,7 @@ export type SimilarMovieType = {
 export type CrewType = {
   known_for_department: string;
   name: string;
+  job: string;
 };
 export type CastType = {
   name: string;

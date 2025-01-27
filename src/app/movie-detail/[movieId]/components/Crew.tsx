@@ -7,11 +7,12 @@ type CrewProps = {
 
 export const Crew = ({ dataCrew, dataCast }: CrewProps) => {
   const directors = dataCrew.filter((direct) => {
-    return direct.known_for_department === "Directing";
+    return direct.job === "Director";
   });
   const writers = dataCrew.filter((direct) => {
-    return direct.known_for_department === "Writing";
+    return direct.job === "Writer";
   });
+  console.log("datacrew", dataCrew);
   return (
     <div className="mt-[20px]">
       <div className="border-solid border-b-stone-400 border-b-[0.1px] pb-[8px] flex gap-[35px]">
