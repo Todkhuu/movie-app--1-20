@@ -3,11 +3,11 @@ import { TOKEN } from "@/utils/constant";
 import Image from "next/image";
 import Star from "@/icons/Star";
 import { GenreType, PageType } from "@/utils/types";
-// import { Pagination } from "@/components/ui/pagination";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Pagination } from "@/components/ui/pagination";
 import Link from "next/link";
 import { getData } from "@/utils/data";
 // import { PopButton } from "@/components/components/PopButton";
-// import { ToggleGroupDemo } from "@/components/Toggle-group";
 
 const GenrePage = async ({
   params,
@@ -15,10 +15,11 @@ const GenrePage = async ({
   params: Promise<{ genreId: string }>;
 }) => {
   const { genreId } = await params;
-  const data: GenreType = await getData(
+  const data = await getData(
     `/discover/movie?language=en&with_genres=${genreId}&page=${1}`
   );
   const datas = data.results;
+  console.log(data);
 
   const responses = await fetch(
     `https://api.themoviedb.org/3/genre/movie/list?language=en`,
@@ -30,6 +31,7 @@ const GenrePage = async ({
     }
   );
   const dataGenre = await responses.json();
+  console.log(dataGenre);
 
   return (
     <div className="max-w-[1280px] m-auto">
@@ -40,7 +42,17 @@ const GenrePage = async ({
         <div className="w-[387px]">
           <h3 className="text-[24px] font-semibold">Genres</h3>
           <p className="text-[16px]">See lists of movies by genre</p>
-          {/* <ToggleGroupDemo dataGenre={dataGenre.genres} genreId={genreId} /> */}
+          <ToggleGroup type="multiple" className="flex flex-wrap ">
+            {dataGenre.genres.map((genre: GenreType, index: number) => (
+              <ToggleGroupItem
+                key={index}
+                value={genre.name}
+                aria-label="Toggle bold"
+              >
+                <p>{genre.name}</p>
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
         </div>
         <div className="w-[806px] pl-[16px] border-l-[0.3px]">
           <h3 className="flex text-[20px] font-semibold mb-[32px]">
@@ -81,7 +93,7 @@ const GenrePage = async ({
               );
             })}
           </div>
-          {/* <Pagination /> */}
+          <Pagination />
           {/* <PopButton data={data.results} /> */}
         </div>
       </div>

@@ -1,9 +1,11 @@
-// import { Bold, Italic, Underline } from "lucide-react";
-
 // import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 // import { GenreType } from "@/utils/types";
 
-// export function ToggleGroupDemo({ dataGenre, genreId }: GenreType) {
+// type types = {
+//   dataGenre: GenreType;
+// };
+
+// export function ToggleGroupDemo({ dataGenre }: types) {
 //   return (
 //     <ToggleGroup type="multiple" className="flex flex-wrap ">
 //       {dataGenre
