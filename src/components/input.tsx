@@ -85,7 +85,11 @@ export function InputDemo() {
                 </div>
               </Link>
             ))}
-            <p className="p-[16px]">See all results for </p>
+            <Link href={`/search?value=${searchValue}&page=`}>
+              <p onClick={clickHandler} className="p-[16px]">
+                See all results for
+              </p>
+            </Link>
           </div>
         ) : (
           ""
