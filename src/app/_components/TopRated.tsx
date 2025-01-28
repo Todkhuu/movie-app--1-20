@@ -8,7 +8,7 @@ export const TopRated = async () => {
   return (
     <div className="max-w-[1280px] m-auto">
       <Link href="/catogery-detail/top_rated">
-        <CardsTop text={"TopRated"} />
+        <CardsTop text={"Top Rated"} />
       </Link>
       <Cards data={data.results} />
     </div>

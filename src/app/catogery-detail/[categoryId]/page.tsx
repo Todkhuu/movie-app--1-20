@@ -8,11 +8,12 @@ const CategoryPage = async ({
 }) => {
   const { categoryId } = await params;
   const data = await getData(`/movie/${categoryId}?language=en-US&page=1`);
-  console.log(data);
   return (
     <div className="max-w-[1280px] m-auto">
       <h2 className="text-[30px] font-semibold mt-[52px] mb-[32px]">
-        {categoryId}
+        {categoryId === "popular" ? "Popular" : ""}
+        {categoryId === "top_rated" ? "Top Rated" : ""}
+        {categoryId === "upcoming" ? "Upcoming" : ""}
       </h2>
       <Cards data={data.results} />
     </div>
