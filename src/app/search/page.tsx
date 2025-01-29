@@ -27,7 +27,7 @@ const SearchPage = () => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  });
   console.log("dddd", datas);
   return (
     <div className="max-w-[1280px] m-auto">

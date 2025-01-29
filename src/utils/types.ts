@@ -12,7 +12,9 @@ export type MovieType = {
   id: number;
   job: string;
   release_date: string;
+  page: number;
   total_results: number;
+  results: [];
 };
 export type PageType = {
   poster_path: string;
@@ -27,6 +29,7 @@ export type PageType = {
   genre_ids: number[];
   id: number;
   job: string;
+  total_pages: number;
 };
 export type GenreType = {
   name: string;
