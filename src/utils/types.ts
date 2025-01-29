@@ -34,6 +34,7 @@ export type GenreType = {
   total_results: string;
   results: [];
   genres: [];
+  genre_ids: [];
 };
 export type OneMovieType = {
   runtime: number;
