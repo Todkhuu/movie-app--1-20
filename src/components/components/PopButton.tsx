@@ -11,7 +11,7 @@ export const PopButton = ({ data }: Genre) => {
     <div className="flex flex-wrap gap-[18px]">
       {data.map((genre: GenreType, index: number) => {
         return (
-          <Link key={index} href={`/genre-detail?genreIds=${genre.id}`}>
+          <Link key={index} href={`/genre-detail?page=1&genreIds=${genre.id}`}>
             <button className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold ">
               {genre?.name}
               <MdOutlineKeyboardArrowRight />

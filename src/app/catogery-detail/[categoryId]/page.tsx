@@ -7,7 +7,9 @@ const CategoryPage = async ({
   params: Promise<{ categoryId: string }>;
 }) => {
   const { categoryId } = await params;
+  console.log("barih", categoryId);
   const data = await getData(`/movie/${categoryId}?language=en-US&page=1`);
+  console.log("dataSimilar", data);
   return (
     <div className="max-w-[1280px] m-auto">
       <h2 className="text-[30px] font-semibold mt-[52px] mb-[32px]">

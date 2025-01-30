@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { GenreType, MovieType, PageType } from "@/utils/types";
+import { GenreType, PageType } from "@/utils/types";
 import { getData } from "@/utils/data";
 import { TOKEN } from "@/utils/constant";
 import Link from "next/link";
@@ -19,6 +19,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function ToggleGroupDemo() {
   const [movies, setMovies] = React.useState<{
@@ -44,7 +45,7 @@ export default function ToggleGroupDemo() {
       console.log("Movies:", data);
     };
     getDatas();
-  }, [genreIds]);
+  }, [genreIds, page]);
 
   React.useEffect(() => {
     const getDatass = async () => {
@@ -66,14 +67,10 @@ export default function ToggleGroupDemo() {
 
   const clickHandler = (newGenreIds: string[]) => {
     console.log("newGenre", newGenreIds);
-    router.push(`?genreIds=${newGenreIds}`);
+    router.push(`?page=${page}&genreIds=${newGenreIds}`);
   };
 
-  const clickPage = (page: number) => {
-    router.push(`?page=${page}`);
-  };
-  const totalPage = movies?.total_pages;
-  // console.log(totalPage);
+  const totalPage = movies?.total_pages || 0;
 
   return (
     <div className="max-w-[1280px] m-auto">
@@ -87,15 +84,18 @@ export default function ToggleGroupDemo() {
           <ToggleGroup
             onValueChange={clickHandler}
             type="multiple"
-            className="flex flex-wrap "
+            className="flex flex-wrap justify-start mt-[20px] gap-[16px]"
           >
             {genres?.map((genre: GenreType, index: number) => (
               <ToggleGroupItem
                 key={index}
                 value={genre.id.toString()}
                 aria-label="Toggle bold"
+                variant={"outline"}
+                className="h-auto rounded-full text-[12px] px-[10px]"
               >
-                <div>{genre.name}</div>
+                {genre.name}
+                <MdOutlineKeyboardArrowRight />
               </ToggleGroupItem>
             ))}
           </ToggleGroup>
@@ -141,59 +141,84 @@ export default function ToggleGroupDemo() {
           </div>
           <Pagination>
             <PaginationContent>
-              {Number(page) > 1 && (
+              {page > 1 && (
                 <PaginationItem>
                   <PaginationPrevious
                     href="#"
-                    onClick={() => clickPage(Number(page) - 1)}
+                    onClick={() =>
+                      router.push(
+                        `/genre-detail?page=${page - 1}&genreIds=${genreIds}`
+                      )
+                    }
                   />
                 </PaginationItem>
               )}
-              {Number(page) > 1 && (
+              {page > 1 && (
                 <PaginationItem>
                   <PaginationLink
                     href="#"
-                    onClick={() => clickPage(Number(page) - 1)}
+                    onClick={() =>
+                      router.push(
+                        `/genre-detail?page=${page - 1}&genreIds=${genreIds}`
+                      )
+                    }
                   >
-                    {Number(page) - 1}
+                    {page - 1}
                   </PaginationLink>
                 </PaginationItem>
               )}
+
               <PaginationItem>
                 <PaginationLink href="#" isActive>
-                  {Number(page)}
+                  {page}
                 </PaginationLink>
               </PaginationItem>
-              {Number(page) < totalPage && totalPage > 1 && (
+
+              {page < totalPage && totalPage > 1 && (
                 <PaginationItem>
                   <PaginationLink
                     href="#"
-                    onClick={() => clickPage(Number(page) + 1)}
+                    onClick={() =>
+                      router.push(
+                        `/genre-detail?page=${page + 1}&genreIds=${genreIds}`
+                      )
+                    }
                   >
-                    {Number(page) + 1}
+                    {page + 1}
                   </PaginationLink>
                 </PaginationItem>
               )}
-              {Number(page) == 1 && totalPage > 1 && (
+
+              {page == 1 && totalPage > 1 && (
                 <PaginationItem>
                   <PaginationLink
                     href="#"
-                    onClick={() => clickPage(Number(page) + 2)}
+                    onClick={() =>
+                      router.push(
+                        `/genre-detail?page=${page + 2}&genreIds=${genreIds}`
+                      )
+                    }
                   >
-                    {Number(page) + 2}
+                    {page + 2}
                   </PaginationLink>
                 </PaginationItem>
               )}
-              {Number(page) < totalPage - 1 && totalPage > 3 && (
+
+              {page < totalPage - 1 && totalPage > 3 && (
                 <PaginationItem>
                   <PaginationEllipsis />
                 </PaginationItem>
               )}
-              {Number(page) < totalPage && (
+
+              {page < totalPage && (
                 <PaginationItem>
                   <PaginationNext
                     href="#"
-                    onClick={() => clickPage(Number(page) + 1)}
+                    onClick={() =>
+                      router.push(
+                        `/genre-detail?page=${page + 1}&genreIds=${genreIds}`
+                      )
+                    }
                   />
                 </PaginationItem>
               )}

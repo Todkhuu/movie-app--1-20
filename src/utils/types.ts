@@ -54,6 +54,7 @@ export type SimilarMovieType = {
   poster_path: string;
   title: string;
   vote_average: number;
+  genre_ids: number[];
 };
 export type CrewType = {
   known_for_department: string;

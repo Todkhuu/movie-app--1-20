@@ -5,6 +5,7 @@ import { Genres } from "./components/Genres";
 import { Crew } from "./components/Crew";
 import { Cards } from "./components/Card";
 import { TrailerContainer } from "./components/TrailerContainer";
+import Link from "next/link";
 
 const MoviePage = async ({
   params,
@@ -16,7 +17,7 @@ const MoviePage = async ({
   const data = await getData(`/movie/${movieId}?language=en-US`);
   const dataGenres = await getData(`/genre/movie/list?language=en`);
   const dataCrews = await getData(`/movie/${movieId}/credits?language=en-US`);
-  const dataCards = await getData(
+  const dataSimilar = await getData(
     `/movie/${movieId}/similar?language=en-US&page=1`
   );
 
@@ -28,8 +29,10 @@ const MoviePage = async ({
         <Genres dataGenre={dataGenres.genres} />
         <p className="mt-[20px] text-[16px]">{data?.overview}</p>
         <Crew dataCast={dataCrews.cast} dataCrew={dataCrews.crew} />
-        <CardsTop text="More like this" />
-        <Cards dataCards={dataCards.results} />
+        <Link href={`/similar-detail?page=1&similarId=${movieId}`}>
+          <CardsTop text="More like this" />
+        </Link>
+        <Cards dataCards={dataSimilar.results} />
       </div>
     </div>
   );

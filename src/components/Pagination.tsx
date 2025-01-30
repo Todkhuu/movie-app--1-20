@@ -1,3 +1,4 @@
+"use client";
 import {
   Pagination,
   PaginationContent,
@@ -8,30 +9,92 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export function PaginationDemo() {
+export function PaginationDemo({ totalPage, page }: number) {
+  const router = useRouter();
   return (
     <Pagination>
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
+        {page > 1 && (
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={() =>
+                router.push(
+                  `/similar-detail?page=${page - 1}&similarId=${similarId}`
+                )
+              }
+            />
+          </PaginationItem>
+        )}
+        {page > 1 && (
+          <PaginationItem>
+            <PaginationLink
+              href="#"
+              onClick={() =>
+                router.push(
+                  `/similar-detail?page=${page - 1}&similarId=${similarId}`
+                )
+              }
+            >
+              {page - 1}
+            </PaginationLink>
+          </PaginationItem>
+        )}
+
         <PaginationItem>
           <PaginationLink href="#" isActive>
-            2
+            {page}
           </PaginationLink>
         </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
+
+        {page < totalPage && totalPage > 1 && (
+          <PaginationItem>
+            <PaginationLink
+              href="#"
+              onClick={() =>
+                router.push(
+                  `/similar-detail?page=${page + 1}&similarId=${similarId}`
+                )
+              }
+            >
+              {page + 1}
+            </PaginationLink>
+          </PaginationItem>
+        )}
+
+        {page == 1 && totalPage > 1 && (
+          <PaginationItem>
+            <PaginationLink
+              href="#"
+              onClick={() =>
+                router.push(
+                  `/similar-detail?page=${page + 2}&similarId=${similarId}`
+                )
+              }
+            >
+              {page + 2}
+            </PaginationLink>
+          </PaginationItem>
+        )}
+
+        {page < totalPage - 1 && totalPage > 3 && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
+
+        {page < totalPage && (
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={() =>
+                router.push(
+                  `/similar-detail?page=${page + 1}&similarId=${similarId}`
+                )
+              }
+            />
+          </PaginationItem>
+        )}
       </PaginationContent>
     </Pagination>
   );

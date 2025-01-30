@@ -5,7 +5,7 @@ import { Card, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
 type CardsProps = {
-  data: MovieType[];
+  data: MovieType[] | undefined;
 };
 
 export const Cards = ({ data }: CardsProps) => {
