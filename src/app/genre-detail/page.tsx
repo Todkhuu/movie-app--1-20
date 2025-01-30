@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { GenreType, PageType } from "@/utils/types";
+import { GenresType, GenreType } from "@/utils/types";
 import { getData } from "@/utils/data";
-import { TOKEN } from "@/utils/constant";
 import Link from "next/link";
 import Image from "next/image";
 import Star from "@/icons/Star";
@@ -25,8 +24,8 @@ export default function ToggleGroupDemo() {
   const [movies, setMovies] = React.useState<{
     page: number;
     total_results: number;
-    results: PageType[];
     total_pages: number;
+    results: GenresType[];
   } | null>(null);
   const [genres, setGenres] = React.useState<GenreType[]>([]);
 
@@ -48,21 +47,11 @@ export default function ToggleGroupDemo() {
   }, [genreIds, page]);
 
   React.useEffect(() => {
-    const getDatass = async () => {
-      const responses = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?language=en`,
-        {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const dataGenre = await responses.json();
+    const getDatas = async () => {
+      const dataGenre = await getData(`/genre/movie/list?language=en`);
       setGenres(dataGenre.genres || []);
-      // console.log("Genres:", dataGenre);
     };
-    getDatass();
+    getDatas();
   }, []);
 
   const clickHandler = (newGenreIds: string[]) => {
@@ -110,7 +99,7 @@ export default function ToggleGroupDemo() {
               ))}
           </h3>
           <div className="flex flex-wrap gap-[43px]">
-            {movies?.results.map((data: PageType, index: number) => {
+            {movies?.results.map((data: GenresType, index: number) => {
               return (
                 <Link key={index} href={`/movie-detail/${data.id}`}>
                   <Card className="w-[165px] h-[331px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl">
@@ -139,7 +128,8 @@ export default function ToggleGroupDemo() {
               );
             })}
           </div>
-          <Pagination>
+
+          <Pagination className="w-[100%] mt-[32px] flex justify-end">
             <PaginationContent>
               {page > 1 && (
                 <PaginationItem>

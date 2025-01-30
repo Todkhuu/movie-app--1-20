@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardTitle } from "@/components/ui/card";
 import Star from "@/icons/Star";
-import { PaginationDemo } from "@/components/Pagination";
+// import { PaginationDemo } from "@/components/Pagination";
 type types = {
   results: MovieType[];
   total_results: number;
@@ -27,7 +27,7 @@ const SearchPage = () => {
   };
   useEffect(() => {
     fetchData();
-  });
+  }, [value]);
   console.log("dddd", datas);
   return (
     <div className="max-w-[1280px] m-auto">
@@ -67,7 +67,7 @@ const SearchPage = () => {
               );
             })}
           </div>
-          <PaginationDemo />
+          {/* <PaginationDemo /> */}
         </div>
         <div></div>
       </div>

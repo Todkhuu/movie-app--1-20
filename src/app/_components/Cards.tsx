@@ -1,18 +1,18 @@
-import { MovieType } from "@/utils/types";
+import { MovieType, ResultsType } from "@/utils/types";
 import Star from "@/icons/Star";
 import Image from "next/image";
 import { Card, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
-type CardsProps = {
-  data: MovieType[] | undefined;
+type type = {
+  data: ResultsType[] | undefined;
 };
 
-export const Cards = ({ data }: CardsProps) => {
+export const Cards = ({ data }: type) => {
   console.log("dataaaaaa", data);
   return (
     <div className="flex flex-wrap gap-[32px]">
-      {data?.slice(0, 10).map((movie: MovieType, index: number) => {
+      {data?.slice(0, 10).map((movie: ResultsType, index: number) => {
         return (
           <Link key={index} href={`/movie-detail/${movie.id}`}>
             <Card className="w-[230px] h-[440px] justify-around overflow-hidden bg-secondary hover:opacity-60 linear rounded-xl">

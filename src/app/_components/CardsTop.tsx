@@ -1,8 +1,8 @@
 import { FaArrowRight } from "react-icons/fa6";
-type CardsProps = {
+type type = {
   text: string;
 };
-export const CardsTop = ({ text }: CardsProps) => {
+export const CardsTop = ({ text }: type) => {
   return (
     <div className="w-[100%] flex justify-between items-center my-[32px]">
       <h2 className="text-[24px] font-semibold">{text}</h2>

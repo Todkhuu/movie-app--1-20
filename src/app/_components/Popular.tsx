@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export const Popular = async () => {
   const data = await getData("/movie/popular?language=en-US&page=1");
+  console.log("popular", data);
   return (
     <div className="max-w-[1280px] m-auto">
       <Link href="/catogery-detail/popular">

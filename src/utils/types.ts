@@ -1,43 +1,49 @@
 export type MovieType = {
-  poster_path: string;
-  title: string;
-  vote_average: number;
-  backdrop_path: string;
-  adult: boolean;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  video: boolean;
-  genre_ids: number[];
-  id: number;
-  job: string;
-  release_date: string;
   page: number;
+  total_pages: number;
   total_results: number;
-  results: [];
+  results: ResultsType[];
 };
-export type PageType = {
-  poster_path: string;
-  title: string;
-  vote_average: number;
-  backdrop_path: string;
+export type ResultsType = {
   adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
   video: boolean;
-  genre_ids: number[];
-  id: number;
-  job: string;
-  total_pages: number;
+  vote_average: number;
+  vote_count: number;
 };
+
 export type GenreType = {
   name: string;
   id: number;
   total_results: string;
-  results: [];
+  results: GenresType[];
   genres: [];
   genre_ids: [];
+};
+export type GenresType = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 };
 export type OneMovieType = {
   runtime: number;

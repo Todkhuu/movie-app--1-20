@@ -12,13 +12,13 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useEffect, useState } from "react";
-import { MovieType } from "@/utils/types";
+import { ResultsType } from "@/utils/types";
 
 const SimilarPage = () => {
   const [movies, setMovies] = useState<{
     page: number;
     total_results: number;
-    results: MovieType[];
+    results: ResultsType[];
     total_pages: number;
   } | null>(null);
 
@@ -46,7 +46,7 @@ const SimilarPage = () => {
         More like this
       </h2>
       <Cards data={movies?.results} />
-      <Pagination>
+      <Pagination className="w-[100%] mt-[32px] flex justify-end">
         <PaginationContent>
           {page > 1 && (
             <PaginationItem>
