@@ -1,7 +1,7 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { TOKEN } from "@/utils/constant";
-import { MovieType } from "@/utils/types";
+import { ResultsType } from "@/utils/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Star from "@/icons/Star";
@@ -9,7 +9,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import Link from "next/link";
 
 export function InputDemo() {
-  const [movies, setMovies] = useState<MovieType[]>([]);
+  const [movies, setMovies] = useState<ResultsType[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
 
   const fetchData = async (searchValue: string) => {
@@ -49,7 +49,7 @@ export function InputDemo() {
       />
       <div className="absolute right-[-40px] top-[45px]">
         {movies.length > 0 ? (
-          <div className="w-[577px] h-auto p-[12px] bg-secondary rounded-[8px] border-[0.2px] border-secondary-foreground">
+          <div className="w-[577px] h-auto p-[12px] bg-secondary rounded-[8px] border-[0.2px] border-secondary-foreground ">
             {movies.slice(0, 5).map((movie, index) => (
               <Link key={index} href={`/movie-detail/${movie.id}`}>
                 <div
@@ -87,7 +87,7 @@ export function InputDemo() {
             ))}
             <Link href={`/search?value=${searchValue}&page=`}>
               <p onClick={clickHandler} className="p-[16px]">
-                See all results for
+                See all results for "{searchValue}"
               </p>
             </Link>
           </div>

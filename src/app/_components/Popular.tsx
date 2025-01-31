@@ -8,7 +8,7 @@ export const Popular = async () => {
   console.log("popular", data);
   return (
     <div className="max-w-[1280px] m-auto">
-      <Link href="/catogery-detail/popular">
+      <Link href={`/catogery-detail?page=1&category=${"popular"}`}>
         <CardsTop text={"Popular"} />
       </Link>
       <Cards data={data.results} />

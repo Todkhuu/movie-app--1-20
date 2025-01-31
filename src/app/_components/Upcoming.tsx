@@ -7,7 +7,7 @@ export const Upcoming = async () => {
   const data = await getData("/movie/upcoming?language=en-US&page=1");
   return (
     <div className="max-w-[1280px] m-auto ">
-      <Link href="/catogery-detail/upcoming">
+      <Link href={`/catogery-detail?page=1&category=${"upcoming"}`}>
         <CardsTop text={"Upcoming"} />
       </Link>
       <Cards data={data.results} />
