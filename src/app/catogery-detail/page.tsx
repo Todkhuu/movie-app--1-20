@@ -29,8 +29,6 @@ const CategoryPage = () => {
     getDatas();
   }, [category, page]);
 
-  console.log("Movie: ", movies);
-
   return (
     <div className="max-w-[1280px] m-auto">
       <h2 className="text-[30px] font-semibold mt-[52px] mb-[32px]">

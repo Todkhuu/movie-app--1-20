@@ -1,4 +1,4 @@
-import { MovieType, ResultsType } from "@/utils/types";
+import { ResultsType } from "@/utils/types";
 import Star from "@/icons/Star";
 import Image from "next/image";
 import { Card, CardTitle } from "@/components/ui/card";

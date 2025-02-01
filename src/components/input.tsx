@@ -87,7 +87,7 @@ export function InputDemo() {
             ))}
             <Link href={`/search?value=${searchValue}&page=`}>
               <p onClick={clickHandler} className="p-[16px]">
-                See all results for "{searchValue}"
+                See all results for {searchValue}
               </p>
             </Link>
           </div>

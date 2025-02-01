@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { GenreType, MovieType, ResultsType } from "@/utils/types";
+import { GenreType, ResultsType } from "@/utils/types";
 import { getData } from "@/utils/data";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -35,18 +35,17 @@ const SearchPage = () => {
   const value = searchParams.get("value");
   const page = Number(searchParams.get("page") || "1");
   const genreIds = searchParams.get("genreIds");
-  const fetchData = async () => {
-    const data = await getData(
-      `/search/movie?query=${value}&language=en-US&page=${page}`
-    );
-    console.log(data);
-    setDatas(data);
-    setFiltered(data.results);
-  };
+
   useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData(
+        `/search/movie?query=${value}&language=en-US&page=${page}`
+      );
+      setDatas(data);
+      setFiltered(data.results);
+    };
     fetchData();
   }, [value, page]);
-  console.log("dddd", datas);
 
   useEffect(() => {
     const getDatas = async () => {
@@ -61,7 +60,7 @@ const SearchPage = () => {
       data.genre_ids?.some((id) => genreIds?.includes(id.toString()))
     );
     setFiltered(filter);
-  }, [page, genreIds]);
+  }, [datas, genreIds]);
 
   const clickHandler = (genreIds: string[]) => {
     console.log("newGenre", genreIds);

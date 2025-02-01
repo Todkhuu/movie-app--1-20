@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { getData } from "@/utils/data";
-import { MovieType } from "@/utils/types";
+import { ResultsType } from "@/utils/types";
 import { SkeletonSlider } from "./Skeleton";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
@@ -16,7 +16,7 @@ import { Trailer } from "@/app/movie-detail/[movieId]/components/Trailer";
 import { Cards } from "./components/Cards";
 
 export function CarouselDemo() {
-  const [data, setdata] = React.useState<MovieType[] | null>(null);
+  const [data, setdata] = React.useState<ResultsType[] | null>(null);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +42,7 @@ export function CarouselDemo() {
           className="w-[100%] h-[600px] m-auto"
         >
           <CarouselContent>
-            {data.slice(0.4).map((data: MovieType, index: number) => (
+            {data.slice(0.4).map((data: ResultsType, index: number) => (
               <div key={index} className="relative">
                 <Link href={`movie-detail/${data.id}`}>
                   <CarouselItem>

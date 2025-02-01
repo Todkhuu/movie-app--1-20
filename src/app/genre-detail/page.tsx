@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { GenresType, GenreType } from "@/utils/types";
 import { getData } from "@/utils/data";
@@ -21,13 +21,13 @@ import {
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function ToggleGroupDemo() {
-  const [movies, setMovies] = React.useState<{
+  const [movies, setMovies] = useState<{
     page: number;
     total_results: number;
     total_pages: number;
     results: GenresType[];
   } | null>(null);
-  const [genres, setGenres] = React.useState<GenreType[]>([]);
+  const [genres, setGenres] = useState<GenreType[]>([]);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -35,18 +35,17 @@ export default function ToggleGroupDemo() {
   const page = Number(searchParams.get("page") || "1");
   const genreIds = searchParams.get("genreIds");
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getDatas = async () => {
       const data = await getData(
         `/discover/movie?language=en&with_genres=${genreIds}&page=${page}`
       );
       setMovies(data || []);
-      console.log("Movies:", data);
     };
     getDatas();
   }, [genreIds, page]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getDatas = async () => {
       const dataGenre = await getData(`/genre/movie/list?language=en`);
       setGenres(dataGenre.genres || []);

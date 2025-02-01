@@ -1,9 +1,9 @@
-import { MovieType } from "@/utils/types";
+import { ResultsType } from "@/utils/types";
 import { Card, CardContent } from "../ui/card";
 import Star from "@/icons/Star";
 
 type CardType = {
-  data: MovieType;
+  data: ResultsType;
 };
 
 export const Cards = ({ data }: CardType) => {
