@@ -56,9 +56,11 @@ const SearchPages = () => {
   }, []);
 
   useEffect(() => {
-    const filter = datas?.results?.filter((data: ResultsType) =>
-      data.genre_ids?.some((id) => genreIds?.includes(id.toString()))
-    );
+    const filter = genreIds
+      ? datas?.results?.filter((data: ResultsType) =>
+          data.genre_ids?.some((id) => genreIds?.includes(id.toString()))
+        )
+      : datas?.results;
     setFiltered(filter);
   }, [datas, genreIds]);
 
